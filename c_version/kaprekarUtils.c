@@ -1,8 +1,7 @@
-#include<math.h>
-
-#include "kaprekarUtils.h"
-
 /**
+ * Author: Zac Scott
+ * Date: 2018/1/25
+ * 
  * <p>This function tests whether the given input <code>n</code>
  * is a Kaprekar Number or not.  A Kaprekar Number is a non-negative
  * integer n whose square can be split into two positive integers 
@@ -22,22 +21,29 @@
  * @return <code>true</code> if <code>n</code> is a Kaprekar Number, 
  * <code>false</code> otherwise.
  */
+//Put header first and added author and date lines
+ 
+//add standard library
+#include<math.h>
+#include "kaprekarUtils.h"
+#include<stdlib.h>
+
 int isKaprekar(int n) {
 
   if(n < 1) {
-    return false;
+    exit(1); //Switched "return false" to "exit(1)" to properly exit the program.  Requires standard library to be present
   }
 
   int i;
   long square = n * (long) n;
-  int numDigits = (int) log10(n) + 1;
+  int numberOfDigits = (int) log10(n) + 1; //Changed numDigits to numberOfDigits to agree with code below and help code be more self explanatory
   long modulus = 0;
   long first, second;
 
   //for each possible "split" of the square...
   for(i=1; i<=numberOfDigits; i++) {
     //increase the modulus by a factor of 10
-    modulous *= 10;
+    modulus *= 10;
 
     //split the square into two parts
     first = square / modulus;

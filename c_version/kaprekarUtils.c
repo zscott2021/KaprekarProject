@@ -23,21 +23,19 @@
  */
 //Put header first and added author and date lines
  
-//add standard library
 #include<math.h>
 #include "kaprekarUtils.h"
-#include<stdlib.h>
 
 int isKaprekar(int n) {
 
   if(n < 1) {
-    exit(1); //Switched "return false" to "exit(1)" to properly exit the program.  Requires standard library to be present
+    return 0; //Switched "return false" to "return 0" to properly exit the program.
   }
 
   int i;
   long square = n * (long) n;
   int numberOfDigits = (int) log10(n) + 1; //Changed numDigits to numberOfDigits to agree with code below and help code be more self explanatory
-  long modulus = 0;
+  long modulus = 1; //was dividing by zero, now is not.
   long first, second;
 
   //for each possible "split" of the square...
@@ -50,11 +48,9 @@ int isKaprekar(int n) {
     second = square % modulus;
 
     //test if the split makes a Kaprekar number
-    if(second > 0 &&
-       first + second == n) {
+    if(second > 0 && first + second == n) { //Fixed organization "error"
       return 1;
     }
   }
   return 0;
-  
-}
+  }
